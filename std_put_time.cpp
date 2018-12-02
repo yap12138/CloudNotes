@@ -14,7 +14,7 @@ void show_time_format()
 	auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     // std::getlocaltime 获取当地时间, std::gmtime获取格林制时间
     auto tm = *std::gmtime(&t); 
-	std::cout  << std::put_time(&tm, "%a, %d %m %Y %H:%M:%S GMT") << std::endl;
+	std::cout  << std::put_time(&tm, "%a, %d %b %Y %H:%M:%S GMT") << std::endl;
  
 	//转为字符串
 	std::stringstream ss;
