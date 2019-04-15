@@ -37,13 +37,46 @@ void func(foo<T> param)
 
 }
 
+// 默认复制构造函数、默认移动构造函数都生产
+struct nom
+{
+    string s;
+};
+
+void func(nom n)
+{
+    nom t = n;
+    cout << t.s << endl;
+}
+
+void func_m(nom&& n)
+{
+    nom t = move(n);
+    cout << t.s << endl;
+}
+
 int main(int argc, char const *argv[])
 {
-    item it;
-    item it_r = it;
-    foo<item> a = foo<item>(it_r);
-    // func(a); // 声明移动操作，会删除默认复制操作。
-    func(move(a));
+    // item it;
+    // {
+    //     item it_r = it;
+    // }
+    // cout << endl;
+    // {
+    //     foo<item> a = foo<item>(it);
+    // }
+    // cout << endl;
+    // {
+    //     foo<item> a(it);
+    //     // func(a); // 声明移动操作，会删除默认复制操作。
+    //     func(move(a));
+    // }
+    {
+        nom a { "it is my rule"};
+        func(a);
+        func_m(move(a));
+        func(a);
+    }
     return 0;
 }
 
