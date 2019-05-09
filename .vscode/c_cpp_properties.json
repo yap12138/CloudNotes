@@ -1,9 +1,15 @@
 {
+    "env" : {
+        "myDefaultIncludePath": [
+            "${workspaceFolder}/**"
+        ],
+        "wslUbuntuRootPath": "${localappdata}/Packages/CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc/LocalState/rootfs"
+    },
     "configurations": [
         {
             "name": "MinGW64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${myDefaultIncludePath}"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,6 +18,26 @@
             ],
             "windowsSdkVersion": "10.0.17134.0",
             "compilerPath": "E:/Program Files/mingw-w64/mingw64/bin/g++.exe", 
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        },
+        {
+            "name": "WSL-Ubuntu",
+            "includePath": [
+                "${myDefaultIncludePath}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "${wslUbuntuRootPath}/usr/bin/g++",
+            "browse": {
+                "path": [ "${workspaceFolder}" ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"
