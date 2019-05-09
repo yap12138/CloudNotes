@@ -1,3 +1,5 @@
+CPP_FLAG="-pthread"
+
 do_make() {
 	src=$1
 	dst=${src%.cpp*}
@@ -13,8 +15,8 @@ do_make() {
 		exit 1
 	fi
 	
-	echo "g++ -g -Wall -std=c++14 -o ${dst} ${src}"
-	g++ -g -Wall -std=c++14 -o ${dst} ${src}
+	echo "g++ -g -Wall -std=c++14 -o ${dst} ${src} ${CPP_FLAG}"
+	g++ -g -Wall -std=c++14 -o ${dst} ${src} ${CPP_FLAG}
 }
 
 do_clean() {
