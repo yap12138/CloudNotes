@@ -1,10 +1,18 @@
 {
+	"terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\bash.exe",	// use wsl bash
 	"code-runner.runInTerminal": true,
+	"code-runner.saveFileBeforeRun": true,//运行前保存
+    "code-runner.clearPreviousOutput": true,//运行前清理旧的输出文件
+    "code-runner.ignoreSelection": true,//忽略用户选择
+    "code-runner.preserveFocus": false,//运行时焦点跳回编辑器
 	"code-runner.executorMap": {
 		"javascript": "node",
 		"java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
-		"c": "cd $dir && gcc -g $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-		"cpp": "cd $dir && g++ -g $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+		// "c": "cd $dir && gcc -g $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+		// "cpp": "cd $dir && g++ -g $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+		// wsl case use follow config
+		"c": "cd $dirWithoutTrailingSlash && gcc $fileName -o $fileNameWithoutExt -std=c11 -lm && echo '[Running]' && ./$fileNameWithoutExt",
+		"cpp": "cd $dirWithoutTrailingSlash && g++ -g -Wall $fileName -o $fileNameWithoutExt -std=c++11 -pthread && echo '[Running]' && ./$fileNameWithoutExt",
 		"objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
 		"php": "php",
 		"python": "python",

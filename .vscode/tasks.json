@@ -17,16 +17,17 @@
         {
             "label": "build-debug",
             "type": "shell",
-            "command": "cd",
+            "command": "g++",
             "args": [
-                "${fileDirname}",
-                ";",
-                "g++",
                 "-g",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe"
-            ]
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true   // ctrl+shift+b auto build
+            }
         }
     ]
 }
