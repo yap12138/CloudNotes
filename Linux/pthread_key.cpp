@@ -40,6 +40,11 @@ void make_thread_atexit_key()
 	}
 }
 
+void protect_tls_clean()
+{
+	pthread_exit(0);
+}
+
 int main(int argc, char* argv[])
 {
 	pthread_t t1, t2;
@@ -56,7 +61,10 @@ int main(int argc, char* argv[])
 
 	// delete后key的清理函数得不到调用
 	// pthread_key_delete( thread_atexit_key );
-	sleep( 1 );
+
+	// sleep( 1 );
+	std::atexit( protect_tls_clean ); // 保证在main推出之前退出线程，保证tls被析构
+
 	std::cout << "exit main" << std::endl;
 	return 0;
 }
